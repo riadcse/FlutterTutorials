@@ -52,8 +52,8 @@ class ChatState extends State<Chat> {
 
   Future<void> initSocket() async {
     print('Connecting to chat service');
-    String registrationToken = await Messaging.getToken();
-    socket = IO.io('https://16e2-2402-e280-222f-95e-489b-f996-4525-d3e.ngrok.io', <String, dynamic>{
+    String registrationToken = await getFCMToken();
+    socket = IO.io('https://d42d-2402-e280-222f-95e-99f0-5a9b-e95-2ca2.ngrok.io', <String, dynamic>{
       'transports': ['websocket'],
       'autoConnect': false,
       'query': {

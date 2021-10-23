@@ -1,13 +1,13 @@
 import 'package:chat_app/firebase/messaging.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 
 import 'chat.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  Messaging.initializeMessaging();
+  initializeMessaging();
+  FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
   runApp(MyApp());
 }
 
@@ -89,19 +89,15 @@ class _MyHomePageState extends State<MyHomePage> {
                                   cursorColor: Colors.black,
                                   decoration: InputDecoration(
                                     labelText: 'Name',
-                                    labelStyle: TextStyle(
-                                        fontSize: 15, color: Colors.black),
+                                    labelStyle: TextStyle(fontSize: 15, color: Colors.black),
                                     enabledBorder: UnderlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: Colors.black),
+                                      borderSide: BorderSide(color: Colors.black),
                                     ),
                                     focusedBorder: UnderlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: Colors.black),
+                                      borderSide: BorderSide(color: Colors.black),
                                     ),
                                     disabledBorder: UnderlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: Colors.grey),
+                                      borderSide: BorderSide(color: Colors.grey),
                                     ),
                                   ),
                                   style: TextStyle(fontSize: 20),
@@ -121,9 +117,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               primary: Colors.deepOrange,
                             ),
                             onPressed: _openChat,
-                            child: Text('Go to Chat',
-                                style: TextStyle(
-                                    fontSize: 20, color: Colors.white)),
+                            child: Text('Go to Chat', style: TextStyle(fontSize: 20, color: Colors.white)),
                           ),
                         ),
                       ],
