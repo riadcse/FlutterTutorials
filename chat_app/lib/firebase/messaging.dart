@@ -2,7 +2,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
-//class Messaging {
 final FirebaseMessaging _fcm = FirebaseMessaging.instance;
 FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin;
 
@@ -34,11 +33,9 @@ handleMessage(RemoteMessage message) async {
 Future<String> getFCMToken() async {
   return await _fcm.getToken();
 }
-//}
 
 Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await initializeMessaging();
-
   const AndroidNotificationDetails androidPlatformChannelSpecifics =
       AndroidNotificationDetails('CHAT', "CHAT", 'CHAT', importance: Importance.max, priority: Priority.high, showWhen: true);
   const NotificationDetails platformChannelSpecifics = NotificationDetails(android: androidPlatformChannelSpecifics);
